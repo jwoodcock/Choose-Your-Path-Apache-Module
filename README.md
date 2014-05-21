@@ -13,19 +13,18 @@ sudo apxs -ica -n choose_your_path mod_choose_your_path.c && sudo service apache
 This will compile the module, install it into apache and then restart apache.
 
 The modules looks for these variables to be defined on each path defined in your site configuration. 
-<code>
-SetHandler choose-handler // Only needs to be set on root path
-LevelTitle "" // Title of the level
-LevelDescription "" // The text to show in your level
-MoveRight "{path}" "{action title}" // choose to move left
-MoveLeft "{path}" "{action title}" // optional
-Treasure "{num}" // ammount to reward player
-Damage "{num}" // amount to take off life
-</code>
+
+* SetHandler choose-handler // Only needs to be set on root path
+* LevelTitle "" // Title of the level
+* LevelDescription "" // The text to show in your level
+* MoveRight "{path}" "{action title}" // choose to move left
+* MoveLeft "{path}" "{action title}" // optional
+* Treasure "{num}" // ammount to reward player
+* Damage "{num}" // amount to take off life
 
 Sample configuration for your site .conf file.
 
-<code>
+```
         <Location "/cyp">
             SetHandler choose-handler
             LevelTitle "Stage 1: Welcome Home"
@@ -52,4 +51,4 @@ Sample configuration for your site .conf file.
             Treasure "40"
             Damage "80"
         </Location>
-</code>
+```
