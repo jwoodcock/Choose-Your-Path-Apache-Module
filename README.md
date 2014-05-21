@@ -19,7 +19,7 @@ The modules looks for these variables to be defined on each path defined in your
 * LevelDescription "" // The text to show in your level
 * MoveRight "{path}" "{action title}" // choose to move left
 * MoveLeft "{path}" "{action title}" // optional
-* Treasure "{num}" // ammount to reward player
+* Treasure "{num}" // amount to reward player
 * Damage "{num}" // amount to take off life
 
 Sample configuration for your site .conf file.
