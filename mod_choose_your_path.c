@@ -241,52 +241,54 @@ static int choose_handler(request_rec *r)
         old_template= malloc(length);
         strcpy(old_template, config->theme_template);
         // Replace place holders
-        // title
-        char* processed_template = replace_str(
-            old_template,
-            "{{title}}",
-            "Choose Your Path"
-        );
-        // health
-        processed_template = replace_str(
-            processed_template,
-            "{{health}}",
-            config->damage
-        );
-        // treasure 
-        processed_template = replace_str(
-            processed_template,
-            "{{treasure}}",
-            config->treasure
-        );
-        // choices
-        char choices[100];
-        snprintf(choices, sizeof(choices), "<p><--<a href=\"%s\">%s</a> (O) <a href=\"%s\">%s</a> --></p>",
-            config->move_left,
-            config->move_left_title,
-            config->move_right,
-            config->move_right_title
-        );
-        processed_template = replace_str(
-            processed_template,
-            "{{choices}}",
-            choices
-        );
-        // stage title 
-        processed_template = replace_str(
-            processed_template,
-            "{{stageTitle}}",
-            config->level_title
-        );
-        // stage description
-        processed_template = replace_str(
-            processed_template,
-            "{{description}}",
-            config->level_description
-        );
-        //char *replace_str(const char *str, const char *old, const char *new)
-        ap_rprintf(r, "%s", processed_template);
-        free(processed_template);
+        if (old_template) {
+            // title
+            char* processed_template = replace_str(
+                old_template,
+                "{{title}}",
+                "Choose Your Path"
+            );
+            // health
+            processed_template = replace_str(
+                processed_template,
+                "{{health}}",
+                config->damage
+            );
+            // treasure
+            processed_template = replace_str(
+                processed_template,
+                "{{treasure}}",
+                config->treasure
+            );
+            // choices
+            char choices[100];
+            snprintf(choices, sizeof(choices), "<p><--<a href=\"%s\">%s</a> (O) <a href=\"%s\">%s</a> --></p>",
+                config->move_left,
+                config->move_left_title,
+                config->move_right,
+                config->move_right_title
+            );
+            processed_template = replace_str(
+                processed_template,
+                "{{choices}}",
+                choices
+            );
+            // stage title
+            processed_template = replace_str(
+                processed_template,
+                "{{stageTitle}}",
+                config->level_title
+            );
+            // stage description
+            processed_template = replace_str(
+                processed_template,
+                "{{description}}",
+                config->level_description
+            );
+            //char *replace_str(const char *str, const char *old, const char *new)
+            ap_rprintf(r, "%s", processed_template);
+            free(processed_template);
+        }
     // No cookie means we need to start over
     } else if (show == 0) {
         ap_rprintf(r, "<h2>You must start at the beginning.<br /><a href='/cyp'>Start Here</a></h2><br /><br /><br >");
