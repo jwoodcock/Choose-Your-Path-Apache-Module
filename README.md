@@ -28,6 +28,7 @@ Sample configuration for your site .conf file.
         <Location "/cyp">
             SetHandler choose-handler
             LevelTitle "Stage 1: Welcome Home"
+            Template "/var/www/template/theme.cyp"
             LevelDescription "Stage 1"
             MoveRight "/cyp/stage2" "Stage 2"
             Treasure "10"
