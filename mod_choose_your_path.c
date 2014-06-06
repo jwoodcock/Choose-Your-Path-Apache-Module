@@ -396,13 +396,9 @@ const char *choose_set_template(cmd_parms *cmd, void *cfg, const char *arg)
                 if (!fread(conf->theme_template, 1, length, template_file)) {
                     // something
                 }
-            } else {
-                conf->theme_template = "second no file";
             }
             fclose (template_file);
         }
-    } else {
-        conf->theme_template = "no file";
     }
     return NULL;
 }
